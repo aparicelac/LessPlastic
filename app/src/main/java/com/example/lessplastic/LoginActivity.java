@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-
     private TextView txtRegistro;
     private EditText edtUsuario;
     private EditText edtPassword;

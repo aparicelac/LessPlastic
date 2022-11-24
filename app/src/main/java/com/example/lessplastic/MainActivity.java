@@ -6,13 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.lessplastic.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    FloatingActionButton btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
+        btnAdd = findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new FormTipoFragment());
+            }
+        });
+
     }
 
     private void replaceFragment(Fragment fragment) {

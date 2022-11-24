@@ -61,9 +61,7 @@ public class RegisterFragment extends DialogFragment {
                     }
                     catch (Exception e) {
                         Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                        //usuario = new Usuario(-1, "error", "error", "error", "error", "error");
                     }
-
                     DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
                     boolean success = databaseHelper.addUsuario(usuario);
                     Toast.makeText(getContext(), "Registrado", Toast.LENGTH_SHORT).show();
