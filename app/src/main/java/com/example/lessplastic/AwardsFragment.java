@@ -2,11 +2,21 @@ package com.example.lessplastic;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +33,10 @@ public class AwardsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerLogros;
+    List<Logros> logrosList;
+
 
     public AwardsFragment() {
         // Required empty public constructor
@@ -55,10 +69,30 @@ public class AwardsFragment extends Fragment {
         }
     }
 
+    public void fillList(){
+        logrosList.add(new Logros("#775447", "Primera Semana", "5 dias consecutivos en la app", "En progreso"));
+        logrosList.add(new Logros("#607d8b", "Primera Semana", "5 dias consecutivos en la app", "Completado"));
+        logrosList.add(new Logros("#03a9f4", "Primera Semana", "5 dias consecutivos en la app", "En Progreso"));
+        logrosList.add(new Logros("#775447", "Primera Semana", "5 dias consecutivos en la app", "Completado"));
+        logrosList.add(new Logros("#f44336", "Primera Semana", "5 dias consecutivos en la app", "En progreso"));
+        logrosList.add(new Logros("#009688", "Primera Semana", "5 dias consecutivos en la app", "En progreso"));
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_awards, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_awards, container, false);
+
+        logrosList = new ArrayList<>();
+        recyclerLogros = view.findViewById(R.id.logrosRecyclerView);
+        recyclerLogros.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        fillList();
+
+        LogrosAdapter adapter = new LogrosAdapter(logrosList);
+        recyclerLogros.setAdapter(adapter);
+
+        return view;
     }
 }

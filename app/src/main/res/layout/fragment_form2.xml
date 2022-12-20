@@ -60,7 +60,7 @@
                 android:text="2L a más" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/awardsUsurnameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cantidad:"
