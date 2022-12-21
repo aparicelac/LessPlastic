@@ -132,9 +132,9 @@ public class CircleChartView extends View {
         float reajusteY = 72.0f;
 
         //el 0.7f es del tamaño de circunferencia que toman los textos
-        xy[0] = (float) Math.cos(currentAngle) * 0.75f * (this. radio * this.ancho)
+        xy[0] = (float) Math.cos(currentAngle) * 0.75f * (this.radio * this.ancho)
                 + this.ancho / 2.0f - reajusteX; //eje x
-        xy[1] = (float) Math.sin(currentAngle) * 0.75f * (this. radio * this.ancho)
+        xy[1] = (float) Math.sin(currentAngle) * 0.75f * (this.radio * this.ancho)
                 + this.alto / 2.0f + reajusteY;  //eje y
         return xy;
     }
