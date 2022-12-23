@@ -65,12 +65,12 @@ public class StatsFragment extends Fragment {
     }
 
     public void fillList(){
-        categories.add(new Category("#003f5c", "Bolsas", "Mas de lo usual", "15g", "1"));
-        categories.add(new Category("#444e86", "Botellas", "Mas de lo usual", "15g", "1"));
-        categories.add(new Category("#955196", "Tecnopor", "Mas de lo usual", "15g", "1"));
-        categories.add(new Category("#dd5182", "Empaques", "Mas de lo usual", "15g", "1"));
-        categories.add(new Category("#ff6e54", "PVC", "Mas de lo usual", "15g", "1"));
-        categories.add(new Category("#ffa600", "Envases", "Mas de lo usual", "15g", "1"));
+        categories.add(new Category("#003f5c", "Bolsas", "Mas de lo usual", "2g", "1"));
+        categories.add(new Category("#444e86", "Botellas", "Mas de lo usual", "3g", "1"));
+        categories.add(new Category("#955196", "Tecnopor", "Mas de lo usual", "8g", "1"));
+        categories.add(new Category("#dd5182", "Empaques", "Mas de lo usual", "11g", "1"));
+        categories.add(new Category("#ff6e54", "PVC", "Mas de lo usual", "21g", "1"));
+        categories.add(new Category("#ffa600", "Envases", "Mas de lo usual", "23g", "1"));
 
     }
 

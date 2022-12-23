@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 public class CircleGraphView extends View{
     // Valores para las particiones del gráfico de pastel
-    private float[] values = {10, 20, 30, 40, 50, 60};
+    private float[] values = {2,3,8,11,21,23};
     private String[] categories = {"Bolsas", "Botellas", "Tecnopor", "Empaques", "PVC", "Envases"};
     // Colores para cada partición
     private int[] colors = {
