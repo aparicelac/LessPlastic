@@ -88,4 +88,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return -1;
 
     }
+
+    public boolean addPlastic(Plastico plastico) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        if (plastico != null) {
+            cv.put(TIPO, plastico.getTipo());
+            cv.put(CANTIDAD, plastico.getCantidad());
+            cv.put(TAMAÑO, plastico.getTamaño());
+            cv.put(PESO, plastico.getPeso());
+
+            long insert = db.insert(PLASTICOS_TABLE, null, cv);
+            if (insert == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    }
 }

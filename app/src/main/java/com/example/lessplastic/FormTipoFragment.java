@@ -42,37 +42,37 @@ public class FormTipoFragment extends DialogFragment {
         btnBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment());
+                replaceFragment(new Form1Fragment("bag"));
             }
         });
         btnBottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment());
+                replaceFragment(new Form2Fragment("bottle"));
             }
         });
         btnTechnopor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment());
+                replaceFragment(new Form1Fragment("technopor"));
             }
         });
         btnWrap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment());
+                replaceFragment(new Form2Fragment("wrap"));
             }
         });
         btnPVC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment());
+                replaceFragment(new Form2Fragment("PVC"));
             }
         });
         btnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment());
+                replaceFragment(new Form1Fragment("container"));
             }
         });
         return v;
