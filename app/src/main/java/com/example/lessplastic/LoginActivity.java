@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     DatabaseHelper databaseHelper = new DatabaseHelper(LoginActivity.this);
                     int checkUsuario = databaseHelper.checkUsuario(usuario, password);
+
                     if(checkUsuario != -1) {
                         Toast.makeText(LoginActivity.this, "Datos correctos", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
