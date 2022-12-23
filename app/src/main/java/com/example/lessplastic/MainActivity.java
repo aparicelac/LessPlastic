@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         int ID_usuario = getIntent().getIntExtra("id_usuario", 0);
         Toast.makeText(MainActivity.this, String.valueOf(ID_usuario), Toast.LENGTH_SHORT).show();
 

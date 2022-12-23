@@ -15,9 +15,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "lessPlastic.db";
     private static final int DATABASE_VERSION = 1;
+
     private static final String USUARIO_TABLE = "USUARIOS";
     private static final String PLASTICOS_TABLE = "PLASTICOS";
     private static final String REGISTROS_TABLE = "REGISTROS";
+
     public static final String ID_USUARIO = "ID_usuario";
     public static final String NOMBRE = "nombre";
     public static final String NOMBRE_USUARIO = NOMBRE + "_usuario";
