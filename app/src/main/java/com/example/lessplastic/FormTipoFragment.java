@@ -44,25 +44,25 @@ public class FormTipoFragment extends DialogFragment {
         btnBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("bag"), ID_usuario, "bag");
+                replaceFragment(new Form1Fragment("bag"), ID_usuario, "Bolsas");
             }
         });
         btnBottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment("bottle"), ID_usuario, "bottle");
+                replaceFragment(new Form2Fragment("bottle"), ID_usuario, "Botellas");
             }
         });
         btnTechnopor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("technopor"), ID_usuario, "technopor");
+                replaceFragment(new Form1Fragment("technopor"), ID_usuario, "Tecnopor");
             }
         });
         btnWrap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment("wrap"), ID_usuario, "wrap");
+                replaceFragment(new Form2Fragment("wrap"), ID_usuario, "Empaques");
             }
         });
         btnPVC.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class FormTipoFragment extends DialogFragment {
         btnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("container"), ID_usuario, "container");
+                replaceFragment(new Form1Fragment("container"), ID_usuario, "Envases");
             }
         });
         return v;

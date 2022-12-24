@@ -26,25 +26,25 @@ public class MainActivity extends AppCompatActivity {
         int ID_usuario = getIntent().getIntExtra("id_usuario", 0);
         Toast.makeText(MainActivity.this, String.valueOf(ID_usuario), Toast.LENGTH_SHORT).show();
 
-        replaceFragment(new StatsFragment());
+        replaceFragment(new StatsFragment(), ID_usuario);
         binding.bottomNavigationView.setBackground(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.estadisticas:
-                    replaceFragment(new StatsFragment());
+                    replaceFragment(new StatsFragment(), ID_usuario);
                     break;
 
                 case R.id.calendario:
-                    replaceFragment(new CalendarFragment());
+                    replaceFragment(new CalendarFragment(), ID_usuario);
                     break;
 
                 case R.id.logros:
-                    replaceFragment(new AwardsFragment());
+                    replaceFragment(new AwardsFragment(), ID_usuario);
                     break;
 
                 case R.id.perfil:
-                    replaceFragment(new ProfileFragment());
+                    replaceFragment(new ProfileFragment(), ID_usuario);
                     break;
             }
             return true;
@@ -77,3 +77,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+

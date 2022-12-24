@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 public class CircleGraphView extends View{
     // Valores para las particiones del gráfico de pastel
-    private float[] values = {2,3,8,11,21,23};
+    private float[] values;
     private String[] categories = {"Bolsas", "Botellas", "Tecnopor", "Empaques", "PVC", "Envases"};
     // Colores para cada partición
     private int[] colors = {
@@ -125,5 +125,9 @@ public class CircleGraphView extends View{
 
         // Llamamos al método setMeasuredDimension para establecer el tamaño final medido
         setMeasuredDimension(desiredWidth, heightSize);
+    }
+
+    public void setValues(float[] v) {
+        values = v;
     }
 }

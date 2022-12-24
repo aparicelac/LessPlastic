@@ -91,6 +91,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public String getNombreUsuario(int id_usuario) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select " + NOMBRE_USUARIO + " from " + USUARIO_TABLE + " where " + ID_USUARIO + "= " + id_usuario;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String nombre = cursor.getString(0);
+            return nombre;
+        } else
+            return "";
+
+    }
+
     public int addPlastic(Plastico plastico) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -142,4 +155,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public ArrayList<Plastico> getListaPlasticos(int id_usuario) {
+        ArrayList<Plastico> lista = new ArrayList<Plastico>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + PLASTICOS_TABLE + " WHERE " + PLASTICOS_TABLE
+                + "." + ID_PLASTICO + " IN (SELECT " + ID_PLASTICO + " FROM "
+                + REGISTROS_TABLE + " WHERE " + REGISTROS_TABLE+ "."+ID_USUARIO
+                + "=" + id_usuario + ")";
+        Cursor cursor = db.rawQuery(query, null);
+        int iID = cursor.getColumnIndex(ID_PLASTICO);
+        int iTipo = cursor.getColumnIndex(TIPO);
+        int iCantidad = cursor.getColumnIndex(CANTIDAD);
+        int iTamaño = cursor.getColumnIndex(TAMAÑO);
+        int iPeso = cursor.getColumnIndex(PESO);
+
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            int id = cursor.getInt(iID);
+            String tipo = cursor.getString(iTipo);
+            int cantidad = cursor.getInt(iCantidad);
+            float tamaño = cursor.getFloat(iTamaño);
+            float peso = cursor.getFloat(iPeso);
+            lista.add(new Plastico(id, tipo, cantidad, tamaño, peso));
+        }
+        return lista;
+    }
+
 }

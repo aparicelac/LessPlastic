@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,20 +37,14 @@ public class AwardsFragment extends Fragment {
 
     RecyclerView recyclerLogros;
     List<Logros> logrosList;
+    TextView txtTotal;
+    TextView txtNombre;
 
 
     public AwardsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AwardsFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static AwardsFragment newInstance(String param1, String param2) {
         AwardsFragment fragment = new AwardsFragment();
@@ -85,6 +80,14 @@ public class AwardsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_awards, container, false);
 
         logrosList = new ArrayList<>();
+        Bundle bundle = getArguments();
+        int ID_usuario = bundle.getInt("id_usuario");
+        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+        ArrayList<Plastico> listaPlast = databaseHelper.getListaPlasticos(ID_usuario);
+        txtTotal = view.findViewById(R.id.totalGramsRegTextView);
+        txtTotal.setText(Float.toString(countPlasticos(listaPlast)));
+        txtNombre = view.findViewById(R.id.awardsUsurnameTextView);
+        txtNombre.setText(databaseHelper.getNombreUsuario(ID_usuario));
         recyclerLogros = view.findViewById(R.id.logrosRecyclerView);
         recyclerLogros.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -94,5 +97,15 @@ public class AwardsFragment extends Fragment {
         recyclerLogros.setAdapter(adapter);
 
         return view;
+    }
+
+    public static float countPlasticos(ArrayList<Plastico> lista) {
+        Iterator<Plastico> i = lista.iterator();
+        float sum = 0;
+        while(i.hasNext()) {
+            Plastico p = i.next();
+            sum += p.getPeso();
+        }
+        return sum;
     }
 }
