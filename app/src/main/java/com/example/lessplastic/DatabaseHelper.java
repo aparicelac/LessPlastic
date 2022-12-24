@@ -8,8 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -69,27 +73,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } else {
                 return true;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
 
     public int checkUsuario(String usuario, String contraseña) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String check = "Select " + ID_USUARIO + ", " + NOMBRE_USUARIO + ", " + CONTRASEÑA + " from " + USUARIO_TABLE + " where " + NOMBRE_USUARIO + "= '" + usuario + "' and " + CONTRASEÑA + "='" + contraseña+ "'";
+        String check = "Select " + ID_USUARIO + ", " + NOMBRE_USUARIO + ", " + CONTRASEÑA + " from " + USUARIO_TABLE + " where " + NOMBRE_USUARIO + "= '" + usuario + "' and " + CONTRASEÑA + "='" + contraseña + "'";
         Cursor cursor = db.rawQuery(check, null);
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             int id = cursor.getInt(0);
             return id;
-        }
-        else
+        } else
             return -1;
 
     }
 
-    public boolean addPlastic(Plastico plastico) {
+    public int addPlastic(Plastico plastico) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -101,16 +103,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             long insert = db.insert(PLASTICOS_TABLE, null, cv);
             if (insert == -1) {
+                return -1;
+            } else {
+                db = this.getReadableDatabase();
+                String query = "Select last_insert_rowid()";
+                Cursor cursor = db.rawQuery(query, null);
+                if (cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    int id = cursor.getInt(0);
+                    return id;
+                } else
+                    return -1;
+            }
+        } else {
+            return -1;
+        }
+    }
+
+    public boolean addRegistro(int id_usuario, int id_plastico) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy", Locale.getDefault());
+        String fDate = df.format(date);
+
+        if (id_usuario != 0 && id_plastico != 0) {
+            cv.put(FECHA, fDate);
+            cv.put(ID_USUARIO, id_usuario);
+            cv.put(ID_PLASTICO, id_plastico);
+
+            long insert = db.insert(REGISTROS_TABLE, null, cv);
+            if (insert == -1) {
                 return false;
             } else {
                 return true;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
-
-
-
 }

@@ -31,6 +31,8 @@ public class FormTipoFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_form_tipo, container, false);
+        Bundle bundle = getArguments();
+        final int ID_usuario = bundle.getInt("id_usuario");
 
         btnBag = (ImageButton) v.findViewById(R.id.btnBag);
         btnBottle = (ImageButton) v.findViewById(R.id.btnBottle);
@@ -42,37 +44,37 @@ public class FormTipoFragment extends DialogFragment {
         btnBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("bag"));
+                replaceFragment(new Form1Fragment("bag"), ID_usuario, "bag");
             }
         });
         btnBottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment("bottle"));
+                replaceFragment(new Form2Fragment("bottle"), ID_usuario, "bottle");
             }
         });
         btnTechnopor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("technopor"));
+                replaceFragment(new Form1Fragment("technopor"), ID_usuario, "technopor");
             }
         });
         btnWrap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment("wrap"));
+                replaceFragment(new Form2Fragment("wrap"), ID_usuario, "wrap");
             }
         });
         btnPVC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form2Fragment("PVC"));
+                replaceFragment(new Form2Fragment("PVC"), ID_usuario, "PVC");
             }
         });
         btnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new Form1Fragment("container"));
+                replaceFragment(new Form1Fragment("container"), ID_usuario, "container");
             }
         });
         return v;
@@ -81,6 +83,17 @@ public class FormTipoFragment extends DialogFragment {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+    private void replaceFragment(Fragment fragment, int id, String tipo) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Bundle bundle = new Bundle();
+        Plastico plastico = new Plastico(id);
+        plastico.setTipo(tipo);
+        bundle.putSerializable("plastico", plastico);
+        fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }

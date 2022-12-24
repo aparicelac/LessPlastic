@@ -1,19 +1,33 @@
 package com.example.lessplastic;
 
-public class Plastico {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Plastico implements Serializable {
 
     private int id;
     private String tipo;
     private int cantidad;
-    private String tamaño;
-    private int peso;
+    private float tamaño;
+    private float peso;
 
-    public Plastico(int id, String tipo, int cantidad, String tamaño, int peso) {
+    public Plastico(int id, String tipo, int cantidad, float tamaño, float peso) {
         this.id = id;
         this.tipo = tipo;
         this.cantidad = cantidad;
         this.tamaño = tamaño;
         this.peso = peso;
+    }
+
+    public Plastico(int id) {
+
+        this.id = id;
+        this.tipo = "";
+        this.cantidad = 0;
+        this.tamaño = 0;
+        this.peso = 0;
+
     }
 
     public int getId() {
@@ -40,19 +54,19 @@ public class Plastico {
         this.cantidad = nuevaCantidad;
     }
 
-    public String getTamaño() {
+    public float getTamaño() {
         return tamaño;
     }
 
-    public void setTamaño(String nuevoTamaño) {
+    public void setTamaño(float nuevoTamaño) {
         this.tamaño = nuevoTamaño;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(int nuevoPeso) {
+    public void setPeso(float nuevoPeso) {
         this.peso = nuevoPeso;
     }
 

@@ -42,16 +42,6 @@ public class Form1Fragment extends Fragment {
     public Form1Fragment(String tipo) {
         this.strTipo = tipo;
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Form1Fragment newInstance(String param1, String param2) {
         Form1Fragment fragment = new Form1Fragment("");
         Bundle args = new Bundle();
@@ -75,6 +65,8 @@ public class Form1Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_form1, container, false);
+        Bundle bundle = getArguments();
+        Plastico plastico = (Plastico)bundle.getSerializable("plastico");
         cancelar = vista.findViewById(R.id.btnFormCancelar);
         registrar = vista.findViewById(R.id.btnFormRegistrar);
 
@@ -100,20 +92,20 @@ public class Form1Fragment extends Fragment {
                     Toast.makeText(getContext(), "Ingresar todos los datos en el formulario", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Plastico plastico = null;
-                    int intCantidad = parseInt(cantidad, 10);
-                    int intPeso = parseInt(peso, 10);
-                    try {
-                        plastico = new Plastico(-1, strTipo, intCantidad, strTamaño, intPeso);
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                    }
-                    finally {
+                    int intCantidad = parseInt(cantidad);
+                    System.out.println(intCantidad);
+                    float floatPeso = Float.parseFloat(peso);
+                    System.out.println(floatPeso);
+                    plastico.setCantidad(intCantidad);
+                    plastico.setPeso(floatPeso);
+                    System.out.println(plastico.toString());
+
+
                         DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
-                        boolean success = databaseHelper.addPlastic(plastico);
-                        Toast.makeText(getContext(), "Registrado", Toast.LENGTH_SHORT).show();
-                    }
+                        int id_plastico = databaseHelper.addPlastic(plastico);
+                        boolean successRegistro = databaseHelper.addRegistro(plastico.getId(), id_plastico);
+                        Toast.makeText(getContext(), "Registrado" + id_plastico, Toast.LENGTH_SHORT).show();
+
                 }
 
             }
